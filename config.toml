@@ -1,4 +1,4 @@
-baseURL = 'http://aaronrdodd.com/'
+baseURL = 'https://aaronrdodd.com/'
 languageCode = 'en-us'
 title = "Aaron's Personal Site"
 theme = "mainroad"
