@@ -58,3 +58,6 @@ params:
   homeInfoParams:
     title: Hi There!
     content: You've stumbled upon the weblog of Aaron Dodd.
+
+  images:
+    - avatar.png
