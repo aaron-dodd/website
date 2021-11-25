@@ -4,6 +4,7 @@ date: 2021-11-19
 authorbox: false
 sidebar: false
 menu: main
+searchHidden: true
 ---
 
 Hi! I'm Aaron Dodd. I'm a Software Engineer specialized in creating Full-Stack
