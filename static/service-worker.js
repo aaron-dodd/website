@@ -1,13 +1,13 @@
 var routes = [
-  "/",
-  "/about",
-  "/assets",
-  "/categories",
-  "/page",
-  "/post",
-  "/search",
-  "/tags",
-  "/offline.html"
+  "./",
+  "./about",
+  "./assets",
+  "./categories",
+  "./page",
+  "./post",
+  "./search",
+  "./tags",
+  "./offline.html"
 ];
 
 self.addEventListener("install", function (event) {
