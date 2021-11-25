@@ -3,9 +3,7 @@ var cacheName = "aaronrdodd-com-offline";
 var routes = [
   "./",
   "./about",
-  "./assets",
   "./categories",
-  "./page",
   "./post",
   "./search",
   "./tags",
