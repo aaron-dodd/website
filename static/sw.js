@@ -1,63 +1,83 @@
-var cacheName = "aaronrdodd-com-offline";
+const CACHE_NAME = 'aaronrdodd-com-offline-v-0.0.1';
 
-var routes = [
-  "./",
-  "./about",
-  "./categories",
-  "./post",
-  "./search",
-  "./tags",
-  "./offline.html"
+const INSTALL_CACHE = [
+    '/404.html',
+    '/offline/'
 ];
 
-self.addEventListener("install", function (event) {
-  event.waitUntil(preLoad());
+/**
+ * Create a new cache and add all install dependencies
+ */
+self.addEventListener('install', function (event) {
+    event.waitUntil(
+        (async function () {
+            let cache = await caches.open(CACHE_NAME);
+            await cache.addAll(INSTALL_CACHE);
+        })()
+    );
 });
 
-var preLoad = function () {
-  console.log("Installing web app");
-  return caches.open(cacheName).then(function (cache) {
-    console.log("caching index and important routes");
-    return cache.addAll(routes);
-  });
-};
-
-self.addEventListener("fetch", function (event) {
-  event.respondWith(checkResponse(event.request).catch(function() {
-    return returnFromCache(event.request);
-  }));
-  event.waitUntil(addToCache(event.request));
+/**
+ * Delete all old caches when outdated service worker exits
+ * (This only runs when this file is updated)
+ */
+self.addEventListener('activate', function (event) {
+    event.waitUntil(
+        (async function () {
+            let cacheNames = await caches.keys();
+            for (let cacheName of cacheNames) {
+				if (cacheName != CACHE_NAME) {
+					await caches.delete(cacheName);
+				}
+            }
+        })()
+    );
 });
 
-var checkResponse = function (request){
-  return new Promise(function (fulfill, reject) {
-    fetch(request).then(function (response) {
-      if (response.status !== 404) {
-        fulfill(response);
-      } else {
-        reject();
-      }
-    }, reject);
-  });
-};
+/**
+ * Implementation of the Stale-while-revalidate pattern
+ * (https://web.dev/offline-cookbook/#stale-while-revalidate)
+ *
+ * Essentially, take cache first for faster load times, but update the cache
+ * in the background so that page edits will load on the second visit.
+ */
+self.addEventListener('fetch', function (event) {
+    event.respondWith(
+        (async function () {
+            let cache = await caches.open(CACHE_NAME);
+			let url = new URL(event.request.url);
 
-var addToCache = function (request){
-  return caches.open(cacheName).then(function (cache) {
-    return fetch(request).then(function (response) {
-      console.log(response.url + " was cached");
-      return cache.put(request, response);
-    });
-  });
-};
+            // Get cached response first
+            let cacheResponse = await caches.match(event.request);
+            // Send network request next and allow it to run in the background
+            let networkResponsePromise = fetch(event.request).then(async function (response) {
+                // Don't cache a 404 page for a random URL and
+				// only return a 404 page if this resource is ours
+                if ((!response || response.status == 404) && (url.origin == location.origin)) {
+                    return await caches.match('/404.html');
+                }
 
-var returnFromCache = function(request){
-  return caches.open(cacheName).then(function (cache) {
-    return cache.match(request).then(function (matching) {
-     if(!matching || matching.status == 404) {
-       return cache.match("offline.html");
-     } else {
-       return matching;
-     }
-    });
-  });
-};
+                if (!/^\/api\//.test(url.pathname)) {
+                    cache.put(event.request, response.clone());
+                }
+
+                return response;
+            });
+
+            if (cacheResponse) {
+                // We return the cached response if it's not the first time visiting this page
+                return cacheResponse;
+            } else {
+                // only await on the network promise if it's needed
+                try {
+                    return await networkResponsePromise;
+                } catch (ex) {
+					// only return an offline page if this resource is ours
+					if (url.origin == location.origin) {
+						return await caches.match('/offline/');
+					}
+                }
+            }
+        })()
+    );
+});

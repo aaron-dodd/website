@@ -1,0 +1,17 @@
+{
+    "name": "Aaron Dodd",
+    "short_name": "Aaron",
+    "theme_color": "#2E2E33",
+    "background_color": "#1D1E20",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "https://aaronrdodd.com/",
+    "description": "Weblog and Personal Site for Aaron Dodd",
+    "orientation": "any",
+    "icons": [
+        {
+            "src": "https://aaronrdodd.com/avatar.png",
+            "sizes": "512x512"
+        }
+    ]
+}
