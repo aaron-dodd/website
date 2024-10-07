@@ -1,13 +1,33 @@
 // See https://containers.dev/implementors/json_reference/ for configuration reference
 {
-  "name": "Untitled Node.js project",
+  "name": "Astro Personal Website",
+
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "remoteUser": "node",
-  "customizations" : {
-    "jetbrains" : {
-      "backend" : "WebStorm"
+
+  "workspaceFolder": "/workspaces/astro/examples/basics",
+
+  "portsAttributes": {
+    "4321": {
+      "label": "Application",
+      "onAutoForward": "openPreview"
+    }
+  },
+
+  "forwardPorts": [4321],
+
+  "postCreateCommand": "pnpm install && pnpm run build",
+
+  "waitFor": "postCreateCommand",
+
+  "postAttachCommand": {
+    "Server": "pnpm start --host"
+  },
+
+  "customizations": {
+    "jetbrains": {
+      "backend": "WebStorm"
     }
   }
 }
