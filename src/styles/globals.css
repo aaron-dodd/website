@@ -1,26 +1,18 @@
 @charset "utf-8";
 
-@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    background-color: rgb(14, 14, 14);
-    color: rgb(254, 254, 254);
-    font-family: 'Averia Serif Libre', serif;
-    font-size: 1.2rem;
-}
-
-a {
-    color: rgb(254, 254, 254);
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    max-width: 96rem;
 }
 
 @media (min-width: 500px) {
     .grid-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-areas:
-            "header header header header"
+            "blank header header header"
             "navigation navigation navigation navigation"
             "main main main main";
     }
@@ -28,10 +20,8 @@ a {
 
 @media (min-width: 1000px) {
     .grid-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-areas:
-            "header header header header"
+            "blank header header header"
             "navigation main main main";
     }
 }
@@ -42,8 +32,10 @@ a {
 
 .grid-main {
     grid-area: main;
+    width: 76rem;
 }
 
 .grid-navigation {
     grid-area: navigation;
+    width: 20rem;
 }
