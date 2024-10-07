@@ -1,84 +1,53 @@
 ---
-
+import Layout from "../layouts/layout.astro"
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Aaron Dodd</title>
-		<style>
-			:root {
-				background-color: rgb(14, 14, 14);
-				color: rgb(254, 254, 254);
-				font-family: 'Averia Serif Libre', serif;
-				font-size: 1.2rem;
-			}
-
-			main {
-				max-width: 35rem;
-				margin: auto;
-				width: 100%;
-			}
-
-			a {
-				color: rgb(254, 254, 254);
-			}
-		</style>
-	</head>
-	<body>
-		<main>
-			<section>
-				<h1>Hello,</h1>
-				<p>My name is <b>Aaron Dodd</b>.</p>
-				<p>
-					I like programming, reading books, and watching anime. I used to be into league of legends and
-					other computer games but these days I spend my time doing other things.</p>
-				<p>
-					You can find me in some other places on the internet:
-				</p>
-				<ul>
-					<li><a href="mailto:me@aaronrdodd.com">Email</a></li>
-					<li><a href="https://linkedin.com/in/aarondodd94">LinkedIn</a></li>
-					<li><a href="https://github.com/aaron-dodd">GitHub</a></li>
-				</ul>
-			</section>
-			<section>
-				<h2>Fun</h2>
-				<h3>Languages</h3>
-				<p>
-					I study foreign languages in my spare time. So far I have reached an advanced / conversational
-					level in <b>Japanese</b>. I'm working to improve my knowledge of <b>Romanian</b> but I'm still
-					at a fairly rudimentary level.
-				</p>
-				<h3>Programming</h3>
-				<p>
-					I like programming and studying algorithms in my spare time. My current go-to hobbyist programming
-					languages are <b>C++</b>, <b>Rust</b>, and <b>Lisp</b>. I also like <b>Configuration as Code</b>
-					and <b>Infrastructure as Code</b>. My current obsession has been <b>NixOS</b>, which has become an
-					endless source of tweaking and optimising things and taught me a lot about the Linux world.
-				</p>
-				<p>
-					All of my projects (including my Nix config) are available on my
-					<a href="https://github.com/aaron-dodd">GitHub</a>.
-				</p>
-			</section>
-			<section>
-				<h2>Work</h2>
-				<p>
-					I'm a <b>Software Engineer</b> specializing in the <b>.NET</b> and <b>React</b> ecosystems with
-					more than 7 years of experience. In terms of skills I think of myself as a <b>T-shaped</b> developer;
-					I have a range of skills across the full-stack of an application but I find that I like working
-					on difficult problems and I gravitate towards <b>infrastructure</b> and <b>backend</b> problems
-					ahead of <b>frontend</b> ones.
-				</p>
-				<p>See <b>my CV</b> for a full list of my skills and achievements.</p>
-			</section>
-		</main>
-	</body>
-</html>
+<Layout title="aaron's website">
+	<main class="grid-main">
+		<section>
+			<h1>Hello,</h1>
+			<p>My name is <b>Aaron Dodd</b>.</p>
+			<p>
+				I like programming, reading books, and watching anime. I used to be into league of legends and
+				other computer games but these days I spend my time doing other things.</p>
+			<p>
+				You can find me in some other places on the internet:
+			</p>
+			<ul>
+				<li><a href="mailto:me@aaronrdodd.com">Email</a></li>
+				<li><a href="https://linkedin.com/in/aarondodd94">LinkedIn</a></li>
+				<li><a href="https://github.com/aaron-dodd">GitHub</a></li>
+			</ul>
+		</section>
+		<section>
+			<h2>Fun</h2>
+			<h3>Languages</h3>
+			<p>
+				I study foreign languages in my spare time. So far I have reached an advanced / conversational
+				level in <b>Japanese</b>. I'm working to improve my knowledge of <b>Romanian</b> but I'm still
+				at a fairly rudimentary level.
+			</p>
+			<h3>Programming</h3>
+			<p>
+				I like programming and studying algorithms in my spare time. My current go-to hobbyist programming
+				languages are <b>C++</b>, <b>Rust</b>, and <b>Lisp</b>. I also like <b>Configuration as Code</b>
+				and <b>Infrastructure as Code</b>. My current obsession has been <b>NixOS</b>, which has become an
+				endless source of tweaking and optimising things and taught me a lot about the Linux world.
+			</p>
+			<p>
+				All of my projects (including my Nix config) are available on my <a href="https://github.com/aaron-dodd">GitHub</a>.
+			</p>
+		</section>
+		<section>
+			<h2>Work</h2>
+			<p>
+				I'm a <b>Software Engineer</b> specializing in the <b>.NET</b> and <b>React</b> ecosystems with
+				more than 7 years of experience. In terms of skills I think of myself as a <b>T-shaped</b> developer;
+				I have a range of skills across the full-stack of an application but I find that I like working
+				on difficult problems and I gravitate towards <b>infrastructure</b> and <b>backend</b> problems
+				ahead of <b>frontend</b> ones.
+			</p>
+			<p>See <b>my CV</b> for a full list of my skills and achievements.</p>
+		</section>
+	</main>
+</Layout>

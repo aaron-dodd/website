@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+@tailwind components;
+@tailwind utilities;
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    max-width: 96rem;
+}
+
+@media (min-width: 500px) {
+    .grid-container {
+        grid-template-areas:
+            "blank header header header"
+            "navigation navigation navigation navigation"
+            "main main main main";
+    }
+}
+
+@media (min-width: 1000px) {
+    .grid-container {
+        grid-template-areas:
+            "blank header header header"
+            "navigation main main main";
+    }
+}
+
+.grid-header {
+    grid-area: header;
+}
+
+.grid-main {
+    grid-area: main;
+    width: 76rem;
+}
+
+.grid-navigation {
+    grid-area: navigation;
+    width: 20rem;
+}

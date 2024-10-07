@@ -1,0 +1,38 @@
+---
+import '@/styles/globals.css';
+
+import {NavigationMenu} from "../components/navigation-menu";
+
+const categories = [
+    {
+        category: 'aaron',
+        links: [
+            {
+                text: 'home & about',
+                href: '/',
+            },
+            {
+                text: 'contact',
+                href: '/contact',
+            }
+        ]
+    },
+    {
+        category: 'thoughts',
+        links: [
+            {
+                text: 'weblog',
+                href: '/blog',
+            },
+            {
+                text: 'weeknotes',
+                href: '/weeknotes'
+            }
+        ]
+    }
+]
+---
+
+<nav class="grid-navigation">
+    <NavigationMenu items={categories} />
+</nav>

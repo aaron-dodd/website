@@ -1,4 +1,8 @@
---- 
+---
+import '@/styles/globals.css';
+import Navigation from './navigation.astro';
+import Header from './header.astro';
+
 interface Props {
 	title: string;
 }
@@ -18,28 +22,17 @@ const { title } = Astro.props;
 		<link rel="icon" href="/icon.svg?ver=1" type="image/svg+xml">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png?ver=1">
 
+		<link rel="stylesheet preload" href="/normalize.css">
+		<link rel="stylesheet preload" href="/magick.css">
+
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<main class="grid-container">
+			<Header title="aaron's website" />
+			<slot />
+			<Navigation />
+		</main>
 	</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
-	}
-	body {
-		margin: 0;
-		padding: 0;
-	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
-</style>
